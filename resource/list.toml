@@ -1,0 +1,9 @@
+title = "CTF講義"
+
+problems = [
+  "[Misc] Test Problem (オリジナル)",
+  "[Forensics] Plain Text (オリジナル)",
+  "[Crypto] Rotten Text (オリジナル)",
+  "[Misc] what's a net cat? (picoCTF)",
+  "[Web] Ghost!? (オリジナル)",
+]

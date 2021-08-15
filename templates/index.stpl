@@ -1,0 +1,14 @@
+<% include!("header.stpl"); %>
+  <div class="theme-showcase row col-lg-12 bg-light mt-lg-4 mb-4 p-5 rounded">
+    <h1><%= title %></h1>
+    <%- message %>
+  </div>
+    <div class="card">
+      <div class="card-header">問題</div>
+      <div class="list-group list-group-flush">
+        <% for pro in problems { %>
+        <a href="<%= format!("{:02}", pro.count) %>" class="list-group-item list-group-item-action"><%= format!("Q{}. {}", pro.count, pro.title) %></a>
+        <% } %>
+    </div>
+  </div>
+<% include!("footer.stpl"); %>

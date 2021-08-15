@@ -1,0 +1,12 @@
+[package]
+name = "ctf-lecture"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+anyhow = "1.0"
+sailfish = "0.3"
+pulldown-cmark = { version = "0.8", default-features = false }
+toml = "0.5"
+fs_extra = "1.2"
+serde = { version = "1.0", features = ["derive"] }
