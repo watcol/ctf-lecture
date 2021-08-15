@@ -1,3 +1,1 @@
-以下のファイルをダウンロードして、中身を見てみましょう。
-
-[flag](./flag)
+netcatを使って`jupitar.challenges.picoctf.org`の`64287`番ポートにアクセスしてみましょう。

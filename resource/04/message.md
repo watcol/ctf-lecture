@@ -1,1 +1,3 @@
-netcatを使って`jupitar.challenges.picoctf.org`の`64287`番ポートにアクセスしてみましょう。
+以下のサイトにアクセスしてみましょう。
+
+[ghost.html](./ghost.html)
