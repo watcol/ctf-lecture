@@ -1,8 +1,8 @@
 title = "CTF講義"
 
 problems = [
-  "[Misc] Test Problem (オリジナル)",
-  "[Crypto] Rotten Text (オリジナル)",
-  "[Misc] what's a net cat? (picoCTF)",
-  "[Web] Ghost!? (オリジナル)",
+  { name = "test", title = "[Misc] Test Problem (オリジナル)" },
+  { name = "rotten", title = "[Crypto] Rotten Text (オリジナル)"},
+  { name = "netcat", title = "[Misc] what's a net cat? (picoCTF)"},
+  { name = "ghost", title = "[Web] Ghost!? (オリジナル)"},
 ]

@@ -5,7 +5,13 @@ use serde::Deserialize;
 #[derive(Deserialize)]
 pub struct List {
     pub title: String,
-    pub problems: Vec<String>,
+    pub problems: Vec<Problem>,
+}
+
+#[derive(Deserialize)]
+pub struct Problem {
+    pub name: String,
+    pub title: String,
 }
 
 impl List {

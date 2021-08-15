@@ -7,7 +7,7 @@
       <div class="card-header">問題</div>
       <div class="list-group list-group-flush">
         <% for pro in problems { %>
-        <a href="<%= format!("{:02}", pro.count) %>" class="list-group-item list-group-item-action"><%= format!("Q{}. {}", pro.count, pro.title) %></a>
+        <a href="<%= pro.name %>" class="list-group-item list-group-item-action"><%= format!("Q{}. {}", pro.count, pro.title) %></a>
         <% } %>
     </div>
   </div>

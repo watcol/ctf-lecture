@@ -32,8 +32,9 @@ impl Index {
                 .map(|(i, pro)| {
                     Ok(Problem {
                         count: i + 1,
-                        title: pro,
-                        message: gen_html(format!("resource/{:02}/message.md", i + 1))?,
+                        name: pro.name.clone(),
+                        title: pro.title,
+                        message: gen_html(format!("resource/{}/message.md", pro.name))?,
                     })
                 })
                 .collect::<anyhow::Result<Vec<_>>>()?,
@@ -45,6 +46,7 @@ impl Index {
 #[template(path = "problem.stpl")]
 struct Problem {
     pub count: usize,
+    pub name: String,
     pub title: String,
     pub message: String,
 }
@@ -60,8 +62,8 @@ fn main() -> anyhow::Result<()> {
     std::fs::create_dir("webroot")?;
     write("webroot/index.html", index)?;
     for pro in problems {
-        let src = format!("resource/{:02}", pro.count);
-        let dst = format!("webroot/{:02}", pro.count);
+        let src = format!("resource/{}", pro.name);
+        let dst = format!("webroot/{}", pro.name);
         let dst = Path::new(&dst);
         fs_extra::dir::copy(
             src,
