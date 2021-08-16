@@ -5,4 +5,7 @@ problems = [
   { name = "rotten", title = "[Crypto] Rotten Text (オリジナル)"},
   { name = "netcat", title = "[Misc] what's a net cat? (picoCTF)"},
   { name = "ghost", title = "[Web] Ghost!? (オリジナル)"},
+  { name = "valley", title = "[OSINT] Valley (オリジナル)" },
+  { name = "valley2", title = "[Forensics] Valley 2 (オリジナル)" },
+  { name = "bin", title = "[Reversing] Hello, Binary! (オリジナル)" },
 ]
