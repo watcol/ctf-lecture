@@ -5,8 +5,5 @@ CTF講義用の問題を置いておきます。
 オリジナル:  
 `NPCA{example}`
 
-CpawCTF:  
-`cpaw{example}`
-
 picoCTF:  
 `picoCTF{example}`
