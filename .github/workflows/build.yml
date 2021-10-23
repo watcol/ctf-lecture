@@ -16,10 +16,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        default: true
     - name: Build
-      run: cargo build --verbose
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
     - name: Make
-      run: cargo run
+      uses: actions-rs/cargo@v1
+      with:
+        command: run
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
