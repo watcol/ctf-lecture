@@ -1,1 +1,1 @@
-netcatを使って`jupitar.challenges.picoctf.org`の`64287`番ポートにアクセスしてみましょう。
+netcatを使って`jupiter.challenges.picoctf.org`の`64287`番ポートにアクセスしてみましょう。
