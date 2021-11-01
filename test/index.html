@@ -15,9 +15,10 @@
 <p><code>NPCA{W31c0m3_2_th3_w0r1d_0f_C7F!}</code></p>
 
   </div>
+  <div id="alert-container"></div>
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Flag" aria-label="Flag" aria-describedby="button-addon2" id="form-flag">
-    <button class="btn btn-outline-primary" type="button" id="btn-verify">確認</button>
+    <button class="btn btn-primary" type="button" id="btn-verify">確認</button>
   </div>
   <script>
   // Generate sha256 hash.
@@ -27,23 +28,26 @@
     return [].map.call(new Uint8Array(digest), x => ('00' + x.toString(16)).slice(-2)).join('');
 }
 
-  let button = document.getElementById('btn-verify');
+  let container = document.getElementById('alert-container');
+  function show_alert(type, message) {
+    let wrapper = document.createElement('div');
+    wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type=button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    container.append(wrapper);
+  }
+
   function verify_flag(){
     let flag = document.getElementById('form-flag').value;
+    let alert_container = document.getElementById('alert-container');
     sha256(flag).then(result => {
       if(result == "2e67ec43686077b7550bc84a853793173237489c0a896483b998574ea3124ef2") {
-        button.innerHTML = "正解";
-        button.classList.remove("btn-outline-primary", "btn-outline-danger");
-        button.classList.add("btn-outline-success");
+        show_alert('success', '正解!');
       } else {
-        button.innerHTML = "不正解";
-        button.classList.remove("btn-outline-primary", "btn-outline-success");
-        button.className = "btn btn-outline-danger";
+        show_alert('danger', 'フラグが間違っています。');
       }
     })
   }
 
-  button.addEventListener('click', verify_flag);
+  document.getElementById('btn-verify').addEventListener('click', verify_flag);
   </script>
     </div>
   </body>

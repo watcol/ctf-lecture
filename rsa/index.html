@@ -18,9 +18,10 @@
 <p>c: <code>23199900198636655739863003276115645447442269061547662038923090522341563301700800244517200095289980810020607328732352713757901730113214355160211351940796566291268263263321738537425528697218758895412679235393010709444044112423705210735465075052910944946105546594730604436283103383501718598740609170541901571113365285894995635287688488410566781198703336301009602860978793748055215218898160295591830292285051100883428827930111211165463614567002188016017678793246167285713309413845472781800377494846951658902170626559819945167175132971203923090355019455136617192334572328243406146228454605743395019902933668560405054971018</code></p>
 
   </div>
+  <div id="alert-container"></div>
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Flag" aria-label="Flag" aria-describedby="button-addon2" id="form-flag">
-    <button class="btn btn-outline-primary" type="button" id="btn-verify">確認</button>
+    <button class="btn btn-primary" type="button" id="btn-verify">確認</button>
   </div>
   <script>
   // Generate sha256 hash.
@@ -30,23 +31,26 @@
     return [].map.call(new Uint8Array(digest), x => ('00' + x.toString(16)).slice(-2)).join('');
 }
 
-  let button = document.getElementById('btn-verify');
+  let container = document.getElementById('alert-container');
+  function show_alert(type, message) {
+    let wrapper = document.createElement('div');
+    wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type=button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    container.append(wrapper);
+  }
+
   function verify_flag(){
     let flag = document.getElementById('form-flag').value;
+    let alert_container = document.getElementById('alert-container');
     sha256(flag).then(result => {
       if(result == "52c6e80cd10257bebb1df65842f192b1fe0f37dbb3417130d3eda63072edd437") {
-        button.innerHTML = "正解";
-        button.classList.remove("btn-outline-primary", "btn-outline-danger");
-        button.classList.add("btn-outline-success");
+        show_alert('success', '正解!');
       } else {
-        button.innerHTML = "不正解";
-        button.classList.remove("btn-outline-primary", "btn-outline-success");
-        button.className = "btn btn-outline-danger";
+        show_alert('danger', 'フラグが間違っています。');
       }
     })
   }
 
-  button.addEventListener('click', verify_flag);
+  document.getElementById('btn-verify').addEventListener('click', verify_flag);
   </script>
     </div>
   </body>

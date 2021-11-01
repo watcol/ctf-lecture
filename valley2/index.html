@@ -15,9 +15,10 @@
 <p>ヒント: 画像ファイルもテキストファイルも結局は0と1の配列です。</p>
 
   </div>
+  <div id="alert-container"></div>
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Flag" aria-label="Flag" aria-describedby="button-addon2" id="form-flag">
-    <button class="btn btn-outline-primary" type="button" id="btn-verify">確認</button>
+    <button class="btn btn-primary" type="button" id="btn-verify">確認</button>
   </div>
   <script>
   // Generate sha256 hash.
@@ -27,23 +28,26 @@
     return [].map.call(new Uint8Array(digest), x => ('00' + x.toString(16)).slice(-2)).join('');
 }
 
-  let button = document.getElementById('btn-verify');
+  let container = document.getElementById('alert-container');
+  function show_alert(type, message) {
+    let wrapper = document.createElement('div');
+    wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type=button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    container.append(wrapper);
+  }
+
   function verify_flag(){
     let flag = document.getElementById('form-flag').value;
+    let alert_container = document.getElementById('alert-container');
     sha256(flag).then(result => {
       if(result == "9f54f69eebf92a9878b0260a278c270776bc02ecb21450443d391385501e4c23") {
-        button.innerHTML = "正解";
-        button.classList.remove("btn-outline-primary", "btn-outline-danger");
-        button.classList.add("btn-outline-success");
+        show_alert('success', '正解!');
       } else {
-        button.innerHTML = "不正解";
-        button.classList.remove("btn-outline-primary", "btn-outline-success");
-        button.className = "btn btn-outline-danger";
+        show_alert('danger', 'フラグが間違っています。');
       }
     })
   }
 
-  button.addEventListener('click', verify_flag);
+  document.getElementById('btn-verify').addEventListener('click', verify_flag);
   </script>
     </div>
   </body>
