@@ -31,7 +31,7 @@
   function verify_flag(){
     let flag = document.getElementById('form-flag').value;
     sha256(flag).then(result => {
-      if(result == "27c86d7648e7139ed1a63dee79588f6088878206fb28fa65d6197f459006ed0e") {
+      if(result == "2e67ec43686077b7550bc84a853793173237489c0a896483b998574ea3124ef2") {
         button.innerHTML = "正解";
         button.classList.remove("btn-outline-primary", "btn-outline-danger");
         button.classList.add("btn-outline-success");
