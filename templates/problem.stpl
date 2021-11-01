@@ -31,6 +31,6 @@
     })
   }
 
-  button.addEventListener('click', verify_flag());
+  button.addEventListener('click', verify_flag);
   </script>
 <% include!("footer.stpl"); %>
