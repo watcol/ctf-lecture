@@ -32,6 +32,7 @@ impl Index {
                         count: i + 1,
                         name: pro.name.clone(),
                         title: pro.title,
+                        digest: pro.digest,
                         includes: pro.includes,
                         message: gen_html(pro.message)?,
                     })
@@ -47,8 +48,9 @@ struct Problem {
     pub count: usize,
     pub name: String,
     pub title: String,
-    pub message: String,
+    pub digest: String,
     pub includes: Vec<PathBuf>,
+    pub message: String,
 }
 
 fn main() -> anyhow::Result<()> {

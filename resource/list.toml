@@ -14,6 +14,7 @@ picoCTF:
 [[problems]]
 name = "test"
 title = "[Misc] Test Problem (オリジナル)"
+digest = "27c86d7648e7139ed1a63dee79588f6088878206fb28fa65d6197f459006ed0e"
 message = """
 フラグは以下の通りです。
 
@@ -24,6 +25,7 @@ message = """
 name = "rotten"
 title = "[Crypto] Rotten Text (オリジナル)"
 includes = ["./rotten"]
+digest = "d96cd8b54cd14ef576ea923ffaa2efc32bcb82ef3bb2ae398c9c0b37aad3bff4"
 message = """
 CTFには古典的な暗号を解く問題も多く出題されます。
 
@@ -35,6 +37,7 @@ CTFには古典的な暗号を解く問題も多く出題されます。
 [[problems]]
 name = "netcat"
 title = "[Misc] what's a net cat? (picoCTF)"
+digest = "8b5aef4cecd616ac23e674626656e15f6818c2ba545b8a4724a5a8e3aa75e64f"
 message = """
 CTFでは、問題サーバーと接続するのにnetcatというツールがよく使われます。
 netcatを使って`jupiter.challenges.picoctf.org`の`64287`番ポートにアクセスしてみましょう。
@@ -44,6 +47,7 @@ netcatを使って`jupiter.challenges.picoctf.org`の`64287`番ポートにア�
 name = "ghost"
 title = "[Web] Ghost!? (オリジナル)"
 includes = ["./ghost.html"]
+digest = "98e67b45de240339611776aa519b250a4381da98e064e6108e2149ea67fa14ff"
 message = """
 以下のサイトにアクセスして、フラグを探しましょう。
 
@@ -54,6 +58,7 @@ message = """
 name = "valley"
 title = "[OSINT] Valley (オリジナル)"
 includes = ["./valley.jpg"]
+digest = "e33721c7076bbf98d6bb47d903e4a0a72c5d614cf3dd4fb0457f74d34d8095d3"
 message = """
 写真に映っている谷の名前を特定してみましょう。
 
@@ -65,6 +70,7 @@ message = """
 [[problems]]
 name = "valley2"
 title = "[Forensics] Valley 2 (オリジナル)"
+digest = "9f54f69eebf92a9878b0260a278c270776bc02ecb21450443d391385501e4c23"
 message = """
 さっきの写真には実はもう1つフラグが隠されています。探してみましょう。
 
@@ -74,6 +80,7 @@ message = """
 [[problems]]
 name = "rsa"
 title = "[Crypto] RSA Encryption (オリジナル)"
+digest = "52c6e80cd10257bebb1df65842f192b1fe0f37dbb3417130d3eda63072edd437"
 message = """
 サマーウォーズの主人公のように、[RSA暗号](https://ja.wikipedia.org/wiki/RSA%E6%9A%97%E5%8F%B7)という暗号を解読してみましょう。
 
@@ -88,8 +95,9 @@ c:&nbsp;`23199900198636655739863003276115645447442269061547662038923090522341563
 
 [[problems]]
 name = "bin"
-includes = ["./bin"]
 title = "[Reversing] Hello, Binary! (オリジナル)"
+includes = ["./bin"]
+digest = "575afa6d260c6d6cf9dc961221ee3631a487dd08651c1a4663ba0f1f990a8200"
 message = """
 今度は、Linux用バイナリを解析(機械語を解読)してみましょう。
 

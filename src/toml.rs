@@ -19,6 +19,7 @@ pub struct Problem {
     pub title: String,
     #[serde(default)]
     pub includes: Vec<PathBuf>,
+    pub digest: String,
     pub message: String,
 }
 
