@@ -14,7 +14,7 @@ picoCTF:
 [[problems]]
 name = "test"
 title = "[Misc] Test Problem (オリジナル)"
-digest = "27c86d7648e7139ed1a63dee79588f6088878206fb28fa65d6197f459006ed0e"
+digest = "2e67ec43686077b7550bc84a853793173237489c0a896483b998574ea3124ef2"
 message = """
 フラグは以下の通りです。
 
