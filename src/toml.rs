@@ -1,10 +1,15 @@
-use std::{fs::File, io::Read, path::Path};
+use std::{
+    fs::File,
+    io::Read,
+    path::{Path, PathBuf},
+};
 
 use serde::Deserialize;
 
 #[derive(Deserialize)]
 pub struct List {
     pub title: String,
+    pub description: String,
     pub problems: Vec<Problem>,
 }
 
@@ -12,6 +17,9 @@ pub struct List {
 pub struct Problem {
     pub name: String,
     pub title: String,
+    #[serde(default)]
+    pub includes: Vec<PathBuf>,
+    pub message: String,
 }
 
 impl List {

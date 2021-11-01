@@ -2,13 +2,11 @@ mod toml;
 
 use std::{
     fs::File,
-    io::{Read, Write},
-    path::Path,
+    io::Write,
+    path::{Path, PathBuf},
 };
 
 use crate::toml::List;
-use anyhow::Context;
-use fs_extra::dir::CopyOptions;
 use pulldown_cmark::{html, Parser};
 use sailfish::TemplateOnce;
 
@@ -24,7 +22,7 @@ impl Index {
     fn from_list(list: List) -> anyhow::Result<Self> {
         Ok(Self {
             title: list.title,
-            message: gen_html("resource/description.md")?,
+            message: gen_html(list.description)?,
             problems: list
                 .problems
                 .into_iter()
@@ -34,7 +32,8 @@ impl Index {
                         count: i + 1,
                         name: pro.name.clone(),
                         title: pro.title,
-                        message: gen_html(format!("resource/{}/message.md", pro.name))?,
+                        includes: pro.includes,
+                        message: gen_html(pro.message)?,
                     })
                 })
                 .collect::<anyhow::Result<Vec<_>>>()?,
@@ -49,6 +48,7 @@ struct Problem {
     pub name: String,
     pub title: String,
     pub message: String,
+    pub includes: Vec<PathBuf>,
 }
 
 fn main() -> anyhow::Result<()> {
@@ -62,14 +62,12 @@ fn main() -> anyhow::Result<()> {
     std::fs::create_dir("webroot")?;
     write("webroot/index.html", index)?;
     for pro in problems {
-        let src = format!("resource/{}", pro.name);
         let dst = format!("webroot/{}", pro.name);
         let dst = Path::new(&dst);
-        fs_extra::dir::copy(
-            src,
-            dst.parent().context("Root Directory")?,
-            &CopyOptions::new(),
-        )?;
+        std::fs::create_dir(dst)?;
+        for i in pro.includes.iter() {
+            std::fs::copy(Path::new("resource").join(i), dst.join(i))?;
+        }
         write(dst.join("index.html"), pro)?;
     }
     Ok(())
@@ -82,13 +80,7 @@ fn write<P: AsRef<Path>, C: TemplateOnce>(path: P, ctx: C) -> anyhow::Result<()>
     Ok(())
 }
 
-fn gen_html<P: AsRef<Path>>(md: P) -> anyhow::Result<String> {
-    let input = {
-        let mut file = File::open(md)?;
-        let mut s = String::new();
-        file.read_to_string(&mut s)?;
-        s
-    };
+fn gen_html(input: String) -> anyhow::Result<String> {
     let parser = Parser::new(&input);
     let mut html = String::new();
     html::push_html(&mut html, parser);
