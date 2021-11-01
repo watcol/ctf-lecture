@@ -15,6 +15,36 @@
 <p><a href="./ghost.html">ghost.html</a></p>
 
   </div>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Flag" aria-label="Flag" aria-describedby="button-addon2" id="form-flag">
+    <button class="btn btn-outline-primary" type="button" id="btn-verify">確認</button>
+  </div>
+  <script>
+  // Generate sha256 hash.
+  async function sha256(str) {
+    const buff = new Uint8Array([].map.call(str, (c) => c.charCodeAt(0))).buffer;
+    const digest = await window.crypto.subtle.digest('SHA-256', buff);
+    return [].map.call(new Uint8Array(digest), x => ('00' + x.toString(16)).slice(-2)).join('');
+}
+
+  let button = document.getElementById('btn-verify');
+  function verify_flag(){
+    let flag = document.getElementById('form-flag').value;
+    sha256(flag).then(result => {
+      if(result == "98e67b45de240339611776aa519b250a4381da98e064e6108e2149ea67fa14ff") {
+        button.innerHTML = "正解";
+        button.classList.remove("btn-outline-primary", "btn-outline-danger");
+        button.classList.add("btn-outline-success");
+      } else {
+        button.innerHTML = "不正解";
+        button.classList.remove("btn-outline-primary", "btn-outline-success");
+        button.className = "btn btn-outline-danger";
+      }
+    })
+  }
+
+  button.addEventListener('click', verify_flag());
+  </script>
     </div>
   </body>
 </html>
