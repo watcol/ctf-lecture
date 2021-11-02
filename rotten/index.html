@@ -18,10 +18,12 @@
 
   </div>
   <div id="alert-container"></div>
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Flag" aria-label="Flag" aria-describedby="button-addon2" id="form-flag">
-    <button class="btn btn-primary" type="button" id="btn-verify">確認</button>
-  </div>
+  <form onsubmit="return verify_flag();">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Flag" aria-label="Flag" aria-describedby="button-addon2" id="form-flag">
+      <input type="submit" value="確認" class="btn btn-primary">
+    </div>
+  </form>
   <script>
   // Generate sha256 hash.
   async function sha256(str) {
@@ -47,9 +49,8 @@
         show_alert('danger', 'フラグが間違っています。');
       }
     })
+    return false;
   }
-
-  document.getElementById('btn-verify').addEventListener('click', verify_flag);
   </script>
     </div>
   </body>
