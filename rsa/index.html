@@ -32,17 +32,20 @@
     const buff = new Uint8Array([].map.call(str, (c) => c.charCodeAt(0))).buffer;
     const digest = await window.crypto.subtle.digest('SHA-256', buff);
     return [].map.call(new Uint8Array(digest), x => ('00' + x.toString(16)).slice(-2)).join('');
-}
+  }
 
   let container = document.getElementById('alert-container');
   function show_alert(type, message) {
-    let wrapper = document.createElement('div');
-    wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-    container.append(wrapper);
+    let alert_elem = document.createElement('div');
+    alert_elem.classList.add("alert", "alert-" + type, "alert-dismissible", "fade", "show");
+    alert_elem.setAttribute("role", "alert");
+    alert_elem.innerHTML = message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    container.append(alert_elem);
     window.setTimeout(() => {
-      let bsalert = bootstrap.Alert(wrapper);
-      bsalert.close();
-    }, 3000);
+      if(container.contains(alert_elem)) {
+        new bootstrap.Alert(alert_elem).close();
+      }
+    }, 2000);
   }
 
   function verify_flag(){
@@ -54,8 +57,7 @@
       } else {
         show_alert('danger', 'フラグが間違っています。');
       }
-    })
-    return false;
+    });
   }
   </script>
     </div>
