@@ -19,8 +19,8 @@ netcatを使って<code>jupiter.challenges.picoctf.org</code>の<code>64287</cod
   <div id="alert-container"></div>
   <form onsubmit="return verify_flag();">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Flag" aria-label="Flag" aria-describedby="button-addon2" id="form-flag">
-      <input type="submit" spellcheck="false" value="送信" class="btn btn-primary">
+      <input type="text" id="form-flag" class="form-control" placeholder="Flag" spellcheck="false">
+      <input type="submit" value="送信" class="btn btn-primary">
     </div>
   </form>
   <script>
@@ -36,7 +36,7 @@ netcatを使って<code>jupiter.challenges.picoctf.org</code>の<code>64287</cod
     let alert_elem = document.createElement('div');
     alert_elem.classList.add("alert", "alert-" + type, "alert-dismissible", "fade", "show");
     alert_elem.setAttribute("role", "alert");
-    alert_elem.innerHTML = message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    alert_elem.innerHTML = message + '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
     container.append(alert_elem);
     window.setTimeout(() => {
       if(container.contains(alert_elem)) {
