@@ -1,5 +1,5 @@
 <% include!("header.stpl"); %>
-  <div class="theme-showcase row col-lg-12 bg-light mt-lg-4 mb-4 p-5 rounded">
+  <div class="row col-lg-12 bg-light mt-lg-4 mb-4 p-5 rounded">
     <h1 class="mb-4"><%= format!("Q{}. {}", count, title) %></h1>
     <%- message %>
   </div>
