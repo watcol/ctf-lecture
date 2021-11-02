@@ -42,6 +42,7 @@
         show_alert('danger', 'フラグが間違っています。');
       }
     });
+    return false;
   }
   </script>
 <% include!("footer.stpl"); %>
