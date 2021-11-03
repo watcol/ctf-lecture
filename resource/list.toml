@@ -105,3 +105,35 @@ message = """
 
 [bin](./bin)
 """
+
+[[problems]]
+name = "sqli"
+title = "[Web] Web Gauntlet (picoCTF)"
+digest = "7e13ae30504813b486c9c76b58d9ba504e0174816473680c9a9cb6b8814628b8"
+message = """
+SQLという言語はSQLiteなどのデータベースを操作するのによく使われます。例えば、サイトにログインするとき、ユーザー名とパスワードが合致するようなユーザーを`users`というテーブルから選択するには、以下のようなSQL文を使います。
+
+```sql
+SELECT * FROM users WHERE username='<ユーザー名>' AND password='<パスワード>'
+```
+
+しかし、このようなSQL文を用いてパスワード認証をしていて、さらにユーザー名やパスワードを検証せずにそのままSQL文に組み込んでいたら、どうなるでしょうか。
+
+試しに、adminというアカウントにログインするのに、ユーザー名に`admin' --`、パスワードに`password`を入れてみます。
+
+```sql
+SELECT * FROM users WHERE username='admin' -- AND password='password'
+```
+
+`--`から先はコメントとして扱われるので、`AND password='password'`の部分が完全に無視されて、認証に成功してしまいます。
+
+このような攻撃方法を"SQLインジェクション"といいますが、これはサーバー側で`--`のような邪悪な文字列を検出してブロックする("フィルタリング"といいます)ことである程度対策できます。
+
+この問題はラウンドをクリアするごとに増えていくフィルタリング文字列をかいくぐってSQLインジェクションを成功させる問題です。(全5ラウンド)
+
+問題サーバー: <http://jupiter.challenges.picoctf.org:19593/>  
+ユーザー名: admin  
+データベース: SQLite  
+
+また、<http://jupiter.challenges.picoctf.org:19593/filter.php>に各ラウンドごとのフィルタルング文字列が表示され、全てクリアするとフラグが表示されます。
+"""
