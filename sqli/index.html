@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <title>[Reversing] Hello, Binary! (オリジナル)</title>
+    <title>[Web] Web Gauntlet (picoCTF)</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,10 +14,21 @@
   <body>
     <div class="container">
   <div class="row col-lg-12 bg-light mt-lg-4 mb-4 p-5 rounded">
-    <h1 class="mb-4">Q8. [Reversing] Hello, Binary! (オリジナル)</h1>
-    <p>今度は、Linux用バイナリを解析(機械語を解読)してみましょう。</p>
-<p>以下は、文字列をを入力したらそれが正しいフラグかどうか判別してくれるプログラムです。</p>
-<p><a href="./bin">bin</a></p>
+    <h1 class="mb-4">Q9. [Web] Web Gauntlet (picoCTF)</h1>
+    <p>SQLという言語はSQLiteなどのデータベースを操作するのによく使われます。例えば、サイトにログインするとき、ユーザー名とパスワードが合致するようなユーザーを<code>users</code>というテーブルから選択するには、以下のようなSQL文を使います。</p>
+<pre><code class="language-sql">SELECT * FROM users WHERE username='&lt;ユーザー名&gt;' AND password='&lt;パスワード&gt;'
+</code></pre>
+<p>しかし、このようなSQL文を用いてパスワード認証をしていて、さらにユーザー名やパスワードを検証せずにそのままSQL文に組み込んでいたら、どうなるでしょうか。</p>
+<p>試しに、adminというアカウントにログインするのに、ユーザー名に<code>admin' --</code>、パスワードに<code>password</code>を入れてみます。</p>
+<pre><code class="language-sql">SELECT * FROM users WHERE username='admin' -- AND password='password'
+</code></pre>
+<p><code>--</code>から先はコメントとして扱われるので、<code>AND password='password'</code>の部分が完全に無視されて、認証に成功してしまいます。</p>
+<p>このような攻撃方法を&quot;SQLインジェクション&quot;といいますが、これはサーバー側で<code>--</code>のような邪悪な文字列を検出してブロックする(&quot;フィルタリング&quot;といいます)ことである程度対策できます。</p>
+<p>この問題はラウンドをクリアするごとに増えていくフィルタリング文字列をかいくぐってSQLインジェクションを成功させる問題です。(全5ラウンド)</p>
+<p>問題サーバー: <a href="http://jupiter.challenges.picoctf.org:19593/">http://jupiter.challenges.picoctf.org:19593/</a><br />
+ユーザー名: admin<br />
+データベース: SQLite</p>
+<p>また、<a href="http://jupiter.challenges.picoctf.org:19593/filter.php">http://jupiter.challenges.picoctf.org:19593/filter.php</a>に各ラウンドごとのフィルタルング文字列が表示され、全てクリアするとフラグが表示されます。</p>
 
   </div>
   <div id="alert-container"></div>
@@ -53,7 +64,7 @@
     let flag = document.getElementById('form-flag').value;
     let alert_container = document.getElementById('alert-container');
     sha256(flag).then(result => {
-      if(result == "575afa6d260c6d6cf9dc961221ee3631a487dd08651c1a4663ba0f1f990a8200") {
+      if(result == "7e13ae30504813b486c9c76b58d9ba504e0174816473680c9a9cb6b8814628b8") {
         show_alert('success', '正解!おめでとう!');
       } else {
         show_alert('danger', 'フラグが間違っています。');
