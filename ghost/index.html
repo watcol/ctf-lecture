@@ -52,7 +52,7 @@
     let flag = document.getElementById('form-flag').value;
     let alert_container = document.getElementById('alert-container');
     sha256(flag).then(result => {
-      if(result == "98e67b45de240339611776aa519b250a4381da98e064e6108e2149ea67fa14ff") {
+      if(result == "2ecf1d5c2f4cc03aaf4d303d7ebd1a3e98520378e12523a44430cee711ef6f64") {
         show_alert('success', '正解!おめでとう!');
       } else {
         show_alert('danger', 'フラグが間違っています。');
