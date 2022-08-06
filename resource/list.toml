@@ -47,7 +47,7 @@ netcatを使って`jupiter.challenges.picoctf.org`の`64287`番ポートにア�
 name = "ghost"
 title = "[Web] Ghost!? (オリジナル)"
 includes = ["./ghost.html"]
-digest = "98e67b45de240339611776aa519b250a4381da98e064e6108e2149ea67fa14ff"
+digest = "2ecf1d5c2f4cc03aaf4d303d7ebd1a3e98520378e12523a44430cee711ef6f64"
 message = """
 以下のサイトにアクセスして、フラグを探しましょう。
 
